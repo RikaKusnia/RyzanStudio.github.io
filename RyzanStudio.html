@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Player Ryzan Studio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Warna hitam */
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Menutupi seluruh tinggi layar */
+            margin: 0;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333;
+            text-align: center; /* Menyelaraskan teks di tengah */
+        }
+        .container input {
+            width: calc(100% - 22px); /* Mengurangi lebar agar sesuai dengan padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .container button {
+            width: calc(100% - 22px); /* Mengurangi lebar agar sesuai dengan padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #fff;
+        }
+        .btn-ongkir {
+            background-color: #00C3FF;
+            color: #fff;
+        }
+        .btn-manual {
+            background-color: #FFCC00;
+            color: #000;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Welcome Registrasi Player Ryzan Studio</h2>
+    <form id="registerForm">
+        <input type="text" id="namaTiktok" placeholder="Nama Tiktok" required>
+        <input type="text" id="namaLengkap" placeholder="Nama Lengkap / Wajib hanya jika Pengiriman" required>
+        <input type="text" id="nomorHp" placeholder="Nomor Hp / WhatsApp Wajib hanya jika Pengiriman" required>
+        <input type="text" id="alamatLengkap" placeholder="Alamat Lengkap Wajib hanya jika Pengiriman" required>
+        <button type="button" class="btn-whatsapp" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+        <button type="button" class="btn-ongkir" onclick="checkOngkir()">Cek Ongkir</button>
+    </form>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function sendToWhatsApp() {
+        const namaTiktok = document.getElementById('namaTiktok').value;
+        const namaLengkap = document.getElementById('namaLengkap').value;
+        const nomorHp = document.getElementById('nomorHp').value;
+        const alamatLengkap = document.getElementById('alamatLengkap').value;
+        
+        const message = `Nama Tiktok: ${namaTiktok}\nNama Lengkap: ${namaLengkap}\nNomor Hp / WhatsApp: ${nomorHp}\nAlamat Lengkap:${alamatLengkap}\n\n*Invoice*\n\nBSI: 7186537194 A.N Riza Andhika Maulansyah\nShopee Pay: 088809599644\nSeaBank: 088809599644\nOVO/DANA: 081225625220\nGopay: 081225625220\n\nJangan lupa bukti transfernya ya kak 🙏🏻\nTerima Kasih\n`;
+        
+        const url = `https://wa.me/6287848884466?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+
+    function checkOngkir() {
+        const namaTiktok = document.getElementById('namaTiktok').value;
+        const alamatLengkap = document.getElementById('alamatLengkap').value;
+        const url = `https://shipper.id/shipping/check-rates/?namaTiktok=${encodeURIComponent(namaTiktok)}&alamatLengkap=${encodeURIComponent(alamatLengkap)}`;
+        window.open(url, '_blank');
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Formulir berhasil di-submit secara manual');
+    });
+</script>
+
+</body>
+</html>
